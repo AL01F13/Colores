@@ -2,7 +2,7 @@
 $(document).ready(function(e) {
 document.addEventListener("deviceready",function(){
 	var basedatos=window.sqlitePlugin.openDatabase({name: "ColoresBD.db",createFromLocation:1});
-	cargarnombrejugador()
+	cargarnombrejugador();
 	function cargarnombrejugador ()
 	{
 		basedatos.transaction(function(ejecutar){
