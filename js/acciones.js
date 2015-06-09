@@ -9,10 +9,21 @@ document.addEventListener("deviceready",function(){
 			var sql="SELECT NombreUsuario FROM Usuario";
 		ejecutar.executeSql(sql,undefined,function(ejecutar,resultado){
 			var datosJugador=resultado.rows.item(0);
-			$('#jugador').text(datosJugador.NombreUsuario);
+			var actual = datosJugador.NombreUsuario;
+			$('#jugador').text(actual);
 		});
 		});
 	}
+	$('#btnconfigurar').on ('tap',function (){
+		$('#txtnombre').val($('#jugador').text());
+	});
+	$('#btnguardar').on ('tap',function (){
+		var nuevonombre=$('#txtnombre').val();
+		basedatos.transaction(function(consulta){
+		consulta.executeSql("UPDATE Usuario SET NombreUsuario=? WHERE ClaveUsuario='1';",[nuevonombre]);
+	});
+	cargarnombrejugador();
+	});
 	audio=window.plugins.LowLatencyAudio;
 	audio.preloadFX('B1','audio/C.mp3',function(){},
 	function(msg){alert("Error "+msg);});
