@@ -24,6 +24,20 @@ document.addEventListener("deviceready",function(){
 	});
 	cargarnombrejugador();
 	});
+	function flash (boton)
+{
+	boton.stop().animate({opacity:'0.5'},{
+		duration:80,
+		complete:function(){
+			boton.stop().animate({opacity:'1'},
+			200);
+		}
+	});
+}
+$('.cuadro').on('tap',function(){
+	flash($(this));
+	audio.play($(this).attr('id'));
+});
 	audio=window.plugins.LowLatencyAudio;
 	audio.preloadFX('B1','audio/C.mp3',function(){},
 	function(msg){alert("Error "+msg);});
@@ -48,15 +62,15 @@ document.addEventListener("deviceready",function(){
 		$('.cuadro').height(alto);
 		
 });//btnjugar on click
-$('.cuadro').on('vmousedown',function(){
-	$('#pantalla').append(quien($(this).attr('id')));
-			$(this).addClass('pulsado')
+//$('.cuadro').on('vmousedown',function(){
+	//$('#pantalla').append(quien($(this).attr('id')));
+			//$(this).addClass('pulsado')
 			
-});
-$('.cuadro').on('vmouseup',function(){
-			$(this).removeClass('pulsado')
+//});
+//$('.cuadro').on('vmouseup',function(){
+			//$(this).removeClass('pulsado')
 			
-});
+//});
 function quien (q)
 {
 	audio.play(q);
